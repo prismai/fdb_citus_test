@@ -12,10 +12,10 @@ def generate_data(N):
     return ''.join(random.choices(string.ascii_uppercase + string.digits, k=N))
 
 def add(conn):
-    data = generate_data(1024).encode('utf-8')
+    data = generate_data(1024)
     now = str(datetime.utcnow().timestamp())
     uid = str(uuid.uuid4().hex)
-    SQL = "INSERT {}"
+    SQL = "INSERT INTO a00 (FEED_ID, CREATED, LABEL) VALUES (1, '{}'::timestamp, '{}'::text)".format(now, data)
     with conn.cursor() as curs:
         curs.execute(SQL)
 
