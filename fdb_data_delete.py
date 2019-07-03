@@ -7,6 +7,7 @@ import string
 import uuid
 import logging
 import argparse
+import time
 
 fdb.api_version(610)
 
@@ -26,3 +27,4 @@ db = fdb.open()
 
 while True:
     delete_old_records(db, timeout, bsize)
+    time.sleep(1)
