@@ -7,7 +7,7 @@ import psycopg2
 
 parser = argparse.ArgumentParser(description='CITUS data deletion app')
 parser.add_argument('port', type=int, help='PostgreSQL server port')
-parser.add_argument('dbname', type=int, help='DB name')
+parser.add_argument('dbname', type=str, help='DB name')
 parser.add_argument('timeout', type=int, help='Data expiration rule in minutes')
 args = parser.parse_args()
 timeout = args.timeout

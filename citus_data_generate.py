@@ -33,7 +33,7 @@ def add_batch_process(conn_string, lim):
 
 parser = argparse.ArgumentParser(description='FDB data generation app')
 parser.add_argument('port', type=int, help='PostgreSQL server port')
-parser.add_argument('dbname', type=int, help='DB name')
+parser.add_argument('dbname', type=str, help='DB name')
 parser.add_argument('num_threads', type=int, help='Number of threads to run data generation')
 parser.add_argument('--num_records', type=int, default=None, help='Records per thread, if not set will run indefinitely')
 args = parser.parse_args()
