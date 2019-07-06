@@ -17,7 +17,8 @@ def add(conn, bsize, dsize, rand_size):
         for i in range(bsize):
             data = generate_data(random.randint(1, dsize))
             uid = str(uuid.uuid4().hex)
-            SQL = "INSERT INTO a00 (FEED_ID, CREATED, LABEL) VALUES (1, now(), '{}'::text);".format(data)
+            feed_id = random.randint(1,20000)
+            SQL = "INSERT INTO a00 (FEED_ID, CREATED, LABEL) VALUES ({}, now(), '{}'::text);".format(feed_id, data)
             curs.execute(SQL)
         conn.commit()
 

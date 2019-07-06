@@ -19,8 +19,9 @@ def add(tr, bsize, dsize, rand_size):
     for i in range(bsize):
         data = generate_data(random.randint(1, dsize)).encode('utf-8')
         now = str(datetime.utcnow().timestamp())
+        feed_id = random.randint(1, 20000)
         uid = str(uuid.uuid4().hex)
-        key = pack((now, uid))
+        key = pack((now, feed_id, uid))
         tr.set(key, data)
 
 def add_batch_process(lim, bsize, dsize, rand_size):
