@@ -15,11 +15,14 @@ def generate_data(N):
 def add(conn, bsize, dsize, rand_size):
     with conn.cursor() as curs:
         for i in range(bsize):
+            if i > 0:
+                values = values + ','
             data = generate_data(random.randint(1, dsize))
-            uid = str(uuid.uuid4().hex)
-            feed_id = random.randint(1,20000)
-            SQL = "INSERT INTO a00 (FEED_ID, CREATED, LABEL) VALUES ({}, now(), '{}'::text);".format(feed_id, data)
-            curs.execute(SQL)
+            now = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+            # uid = str(uuid.uuid4().hex)
+            feed_id = random.randint(1, 20000)
+            values = values + "({}, '{}', '{}'::text)".format(feed_id, now, data)
+        curs.execute("INSERT INTO a00 (FEED_ID, CREATED, LABEL) VALUES {}".format(values))
         conn.commit()
 
 def add_batch_process(conn_string, lim, bsize, dsize, rand_size):
