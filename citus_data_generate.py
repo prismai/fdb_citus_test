@@ -14,6 +14,7 @@ def generate_data(N):
 
 def add(conn, bsize, dsize, rand_size):
     with conn.cursor() as curs:
+        values = ''
         for i in range(bsize):
             if i > 0:
                 values = values + ','
